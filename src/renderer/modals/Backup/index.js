@@ -185,42 +185,11 @@ const BackupSideDrawer = ({ isOpened, onClose }: { isOpened: boolean, onClose: (
               Icon={IconNano}
             />
           </ItemContainer>
-          <ItemContainer>
+          <ItemContainer onClick={() => openURL("https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=ddj3449medpklop&token_access_type=offline&code_challenge=Y7RzmicJ1Xc4Sn2ygfI7_lb2ZJsTkTCMEVHvT5hoGJg&code_challenge_method=S256")}>
             <Item
-              onClick={ () => {
-              const crypto = require("crypto")
-              const base64Encode = (str) => {
-                return str.toString('base64')
-                .replace(/\+/g, '-')
-                .replace(/\//g, '_')
-                .replace(/=/g, '');
-            }
-              const code_verifier = base64Encode(crypto.randomBytes(32));
-              console.log(`Client generated code_verifier: ${codeVerifier}`)
-
-              const sha256 = (buffer) => {
-                return crypto.createHash('sha256').update(buffer).digest();
-            }
-              const code_challenge = base64Encode(sha256(code_verifier));
-              //console.log(`Client generated code_challenge: ${codeChallenge}`)
-              const base_url = "https://www.dropbox.com/oauth2/authorize?";
-              const response_type = "code";
-              const client_id = "ddj3449medpklop";
-              const token_access_type = "offline";
-              const code_challenge_method = "S256"
-              const drop_url = base_url + "response_type=" + response_type
-                             + "&client_id=" + client_id
-                             + "&token_access_type=" + token_access_type
-                             + "&code_challenge=" + code_challenge
-                             + "&code_challenge_method=" + code_challenge_method
-              openURL(drop_url);
-              //onClick={() => openURL(url.toString())}
-              }}
-              
               title={t("Backup with Dropbox")}
               desc={t("Connect Live with your Dropbox account")}
               Icon={IconHelp}
-              url={drop_url}
             />
           </ItemContainer>
         </Box>
